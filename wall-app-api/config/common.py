@@ -21,6 +21,7 @@ class Common(Configuration):
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
         'django_filters',            # for filtering rest endpoints
+        'corsheaders',               # for cross origin requests
 
         # Your apps
         'wall-app-api.users',
@@ -31,6 +32,7 @@ class Common(Configuration):
     MIDDLEWARE = (
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -42,6 +44,8 @@ class Common(Configuration):
     ROOT_URLCONF = 'wall-app-api.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'wall-app-api.wsgi.application'
+    CORS_ORIGIN_ALLOW_ALL = True # Added only because we are not putting this code on production
+    CORS_ALLOW_CREDENTIALS = True # Added to allow Authorization header from origin requests
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

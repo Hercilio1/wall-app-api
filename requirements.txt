@@ -17,6 +17,7 @@ django_unique_upload==0.2.1
 djangorestframework==3.14.0
 Markdown==3.4.3
 django-filter==23.2
+django-cors-headers==4.3.0
 
 # Developer Tools
 ipdb==0.13.13
