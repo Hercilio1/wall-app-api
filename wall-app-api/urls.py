@@ -5,18 +5,18 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
-from .users.views import UserViewSet, UserCreateViewSet
+from .users.views import UserProfileView, UserCreateViewSet
 from .entries.views import EntryListCreateViewSet, EntryDetailViewSet
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'users', UserCreateViewSet)
+router.register(r'register', UserCreateViewSet)
 router.register(r'entries', EntryListCreateViewSet)
 router.register(r'entries', EntryDetailViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
+    path('api/v1/profile/', UserProfileView.as_view()),
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
