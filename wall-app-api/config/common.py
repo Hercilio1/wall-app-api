@@ -21,6 +21,7 @@ class Common(Configuration):
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
         'django_filters',            # for filtering rest endpoints
+        'oauth2_provider',           # oauth2
         'corsheaders',               # for cross origin requests
 
         # Your apps
@@ -72,6 +73,7 @@ class Common(Configuration):
     USE_L10N = True
     USE_TZ = True
     LOGIN_REDIRECT_URL = '/'
+    LOGIN_URL = '/admin/login/'
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -186,6 +188,18 @@ class Common(Configuration):
     # Custom user app
     AUTH_USER_MODEL = 'users.User'
 
+    # Oauth settings
+    AUTHENTICATION_CLASSES = (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+
+    OAUTH2_PROVIDER = {
+        'ACCESS_TOKEN_EXPIRE_SECONDS': 3600,
+        'AUTHORIZATION_CODE_EXPIRE_SECONDS': 600,
+        'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore'
+    }
+
     # Django Rest Framework
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -201,5 +215,6 @@ class Common(Configuration):
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
+            'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         )
     }
