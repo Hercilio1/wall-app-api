@@ -42,6 +42,9 @@ class Common(Configuration):
     )
 
     ALLOWED_HOSTS = ["*"]
+    CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'https://*']
+
+
     ROOT_URLCONF = 'wall-app-api.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'wall-app-api.wsgi.application'
