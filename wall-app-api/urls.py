@@ -10,8 +10,8 @@ from .entries.views import EntryListViewSet, EntryCreateView, EntryDetailViewSet
 
 router = DefaultRouter()
 router.register(r'register', UserCreateViewSet)
-router.register(r'entries', EntryListViewSet)
 router.register(r'entries', EntryDetailViewSet)
+router.register(r'entries', EntryListViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -21,8 +21,6 @@ urlpatterns = [
 
     path('api/v1/', include(router.urls)),
 
-    path('api-token-auth/', views.obtain_auth_token),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
     # the 'api-root' from django rest-frameworks default router
