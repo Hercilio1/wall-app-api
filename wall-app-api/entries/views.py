@@ -23,4 +23,4 @@ class EntryCreateView(generics.CreateAPIView):
 class EntryDetailViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView):
     queryset = Entry.objects.all()
     serializer_class = EntrySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
