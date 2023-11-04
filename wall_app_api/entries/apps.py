@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class EntriesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'wall-app-api.entries'
+    name = 'wall_app_api.entries'

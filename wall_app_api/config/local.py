@@ -16,7 +16,7 @@ class Local(Common):
         '--nologcapture',
         '--with-coverage',
         '--with-progressive',
-        '--cover-package=wall-app-api'
+        '--cover-package=wall_app_api'
     ]
 
     # Mail

@@ -5,6 +5,6 @@ omit = *migrations*,
        *test*,
        *admin*,
        ./manage.py,
-       ./wall-app-api/config/*,
-       ./wall-app-api/wsgi.py,
+       ./wall_app_api/config/*,
+       ./wall_app_api/wsgi.py,
        *__init__*

@@ -5,7 +5,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "wall-app-api.config")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "wall_app_api.config")
     os.environ.setdefault("DJANGO_CONFIGURATION", "Local")
 
     try:

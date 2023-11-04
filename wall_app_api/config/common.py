@@ -25,8 +25,8 @@ class Common(Configuration):
         'corsheaders',               # for cross origin requests
 
         # Your apps
-        'wall-app-api.users',
-        'wall-app-api.entries',
+        'wall_app_api.users',
+        'wall_app_api.entries',
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
@@ -43,9 +43,9 @@ class Common(Configuration):
 
     ALLOWED_HOSTS = ["*"]
 
-    ROOT_URLCONF = 'wall-app-api.urls'
+    ROOT_URLCONF = 'wall_app_api.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-    WSGI_APPLICATION = 'wall-app-api.wsgi.application'
+    WSGI_APPLICATION = 'wall_app_api.wsgi.application'
     CORS_ORIGIN_ALLOW_ALL = True # Added only because we are not putting this code on production
     CORS_ALLOW_CREDENTIALS = True # Added to allow Authorization header from origin requests
 
