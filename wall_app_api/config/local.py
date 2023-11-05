@@ -8,14 +8,13 @@ class Local(Common):
 
     # Testing
     INSTALLED_APPS = Common.INSTALLED_APPS
-    INSTALLED_APPS += ('django_nose',)
-    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+    INSTALLED_APPS += ()
     NOSE_ARGS = [
         BASE_DIR,
         '-s',
         '--nologcapture',
         '--with-coverage',
-        '--with-progressive',
+        # '--with-progressive',
         '--cover-package=wall_app_api'
     ]
 

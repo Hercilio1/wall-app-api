@@ -1,4 +1,5 @@
-from rest_framework import viewsets, mixins
+from rest_framework import generics
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -17,8 +18,7 @@ class UserProfileView(APIView):
         return Response(serializer.data)
 
 
-class UserCreateViewSet(mixins.CreateModelMixin,
-                        viewsets.GenericViewSet):
+class UserCreateView(generics.CreateAPIView):
     """
     Creates user accounts
     """
@@ -29,9 +29,8 @@ class UserCreateViewSet(mixins.CreateModelMixin,
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
 
-        if response.status_code == 201:
+        if response.status_code == status.HTTP_201_CREATED:
             user = response.data
-            print(user)
             self.send_welcome_email(user['email'])
 
         return response

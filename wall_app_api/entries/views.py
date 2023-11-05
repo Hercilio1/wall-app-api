@@ -2,7 +2,7 @@ from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticated
 from .models import Entry
 from .serializers import EntrySerializer, EntryListSerializer
-from ..common.permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 
 
 class EntryListViewSet(viewsets.ReadOnlyModelViewSet):
