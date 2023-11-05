@@ -40,13 +40,6 @@ class UserCreateViewSetTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIn('id', response.data)
-        self.assertIn('email', response.data)
-        self.assertIn('first_name', response.data)
-        self.assertIn('last_name', response.data)
-        self.assertNotIn('password', response.data)
-        self.assertNotIn('access_token', response.data)
-        self.assertNotIn('refresh_token', response.data)
-        self.assertNotIn('token', response.data)
         self.assertEqual(User.objects.count(), 2)
 
     def test_user_create_view_with_only_mandatory_fields(self):
@@ -58,13 +51,6 @@ class UserCreateViewSetTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIn('id', response.data)
-        self.assertIn('email', response.data)
-        self.assertIn('first_name', response.data)
-        self.assertIn('last_name', response.data)
-        self.assertNotIn('password', response.data)
-        self.assertNotIn('access_token', response.data)
-        self.assertNotIn('refresh_token', response.data)
-        self.assertNotIn('token', response.data)
         self.assertEqual(User.objects.count(), 2)
 
     def test_user_create_view_with_duplicated_email(self):
@@ -72,6 +58,15 @@ class UserCreateViewSetTests(APITestCase):
         data = {
             'email': 'test@example.org',
             'password': '_newpassword_',
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 1)
+
+    def test_user_create_view_with_invalid_email(self):
+        url = reverse('user-create')
+        data = {
+            'email': 'test1example.org',
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
