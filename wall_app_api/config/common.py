@@ -46,8 +46,8 @@ class Common(Configuration):
     ROOT_URLCONF = 'wall_app_api.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'wall_app_api.wsgi.application'
-    CORS_ORIGIN_ALLOW_ALL = True # Added only because we are not putting this code on production
-    CORS_ALLOW_CREDENTIALS = True # Added to allow Authorization header from origin requests
+    CORS_ORIGIN_ALLOW_ALL = True   # Added only because we are not putting this code on production
+    CORS_ALLOW_CREDENTIALS = True   # Added to allow Authorization header from origin requests
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -80,7 +80,7 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/2.0/howto/static-files/
     STATIC_ROOT = os.path.normpath(join(os.path.dirname(BASE_DIR), 'static'))
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'templates') # Added so loader.get_template can find our templates folder
+        os.path.join(BASE_DIR, 'templates')  # Added so loader.get_template can find our templates folder
     ]
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
@@ -206,7 +206,7 @@ class Common(Configuration):
     # Django Rest Framework
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 10)),
+        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 3)),
         'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
