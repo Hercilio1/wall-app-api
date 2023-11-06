@@ -1,8 +1,8 @@
 import os
 from os.path import join
 from distutils.util import strtobool
-import dj_database_url
 from configurations import Configuration
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -58,10 +58,14 @@ class Common(Configuration):
 
     # Postgres
     DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://postgres:@postgres:5432/postgres',
-            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
-        )
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv("POSTGRES_DB", "postgres"),
+            'USER': os.getenv("POSTGRES_USER", "postgres"),
+            'PASSWORD': os.getenv("POSTGRES_PASSWORD", ""),
+            'HOST': os.getenv("POSTGRES_HOST", "postgres"),
+            'CONN_MAX_AGE': 600
+        }
     }
 
     # General

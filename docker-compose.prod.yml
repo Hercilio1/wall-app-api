@@ -21,6 +21,7 @@ services:
       - db
     env_file:
       - .env.prod
+      - .env.prod.db
     networks:
       - wall_app_api_network
     restart: always
