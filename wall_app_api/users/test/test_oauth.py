@@ -79,7 +79,9 @@ class OAuthTokenTests(APITestCase):
 
         access_token = response_data['access_token']
 
-        AccessToken.objects.filter(token=access_token).update(expires=datetime.now(pytz.utc) - timedelta(minutes=1))
+        AccessToken.objects.filter(token=access_token).update(
+            expires=datetime.now(pytz.utc) - timedelta(minutes=1)
+        )
 
         url = reverse('user-profile')
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')

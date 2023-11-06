@@ -1,6 +1,4 @@
 from django.test import TestCase
-from django.forms.models import model_to_dict
-from django.contrib.auth.hashers import check_password
 from ..serializers import CreateUserSerializer
 from ..models import User
 
@@ -37,5 +35,3 @@ class TestCreateUserSerializer(TestCase):
             'password': 'pass'
         })
         self.assertFalse(serializer.is_valid())
-
-

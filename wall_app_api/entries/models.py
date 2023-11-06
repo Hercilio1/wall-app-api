@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class Entry(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # TODO: Make readonly.
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # TODO: Make readonly.
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -1,12 +1,7 @@
-from datetime import datetime, timedelta
-from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from rest_framework.authtoken.models import Token
-from oauth2_provider.models import Application, AccessToken
 from ..models import User
-import pytz
 
 
 class UserProfileViewTests(APITestCase):
