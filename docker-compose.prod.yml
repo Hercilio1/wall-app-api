@@ -34,7 +34,7 @@ services:
     depends_on:
       - web
     networks:
-      - your_network_name
+      - wall_app_api_network
 
 volumes:
   postgres_data:
