@@ -8,7 +8,7 @@ services:
     env_file:
       - .env.prod.db
     networks:
-      - wall_app_api_network
+      - shared_network
 
   web:
     restart: always
@@ -20,11 +20,15 @@ services:
     env_file:
       - .env.prod
       - .env.prod.db
+    volumes:
+      - static_volume:/code/static
     networks:
-      - wall_app_api_network
+      - shared_network
 
 volumes:
   postgres_data:
+  static_volume:
 
 networks:
-  wall_app_api_network:
+  shared_network:
+    driver: bridge

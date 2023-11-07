@@ -7,7 +7,7 @@ A place where you can share your ideas.. Check out the project's [documentation]
 
 # Prerequisites
 
-- [Docker](https://docs.docker.com/docker-for-mac/install/)  
+- [Docker](https://docs.docker.com/docker-for-mac/install/)
 
 # Local Development
 
