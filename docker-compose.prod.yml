@@ -23,29 +23,6 @@ services:
     networks:
       - wall_app_api_network
 
-  nginx:
-    restart: always
-    image: nginx:latest
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
-    depends_on:
-      - web
-    networks:
-      - wall_app_api_network
-
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email $CERTBOT_EMAIL -d $CERTBOT_DOMAIN --agree-tos
-
-
 volumes:
   postgres_data:
 
