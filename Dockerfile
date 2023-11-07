@@ -12,4 +12,4 @@ WORKDIR code
 EXPOSE 8000
 
 # Run the production server
-CMD ["bash", "-c", "python wait_for_postgres.py && ./manage.py migrate && gunicorn --bind 0.0.0.0:$PORT --access-logfile - wall_app_api.wsgi:application"]
+CMD ["bash", "-c", "python wait_for_postgres.py && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 --access-logfile - wall_app_api.wsgi:application"]

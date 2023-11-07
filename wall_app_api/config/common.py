@@ -64,6 +64,7 @@ class Common(Configuration):
             'USER': os.getenv("POSTGRES_USER", "postgres"),
             'PASSWORD': os.getenv("POSTGRES_PASSWORD", ""),
             'HOST': os.getenv("POSTGRES_HOST", "postgres"),
+            'PORT': os.getenv("POSTGRES_PORT", "5432"),
             'CONN_MAX_AGE': 600
         }
     }
