@@ -4,6 +4,9 @@ services:
     image: postgres:12
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups
   web:
     environment:
       - DJANGO_SECRET_KEY=local
@@ -19,3 +22,6 @@ services:
     depends_on:
       - postgres
 
+volumes:
+  local_postgres_data:
+  local_postgres_data_backups:

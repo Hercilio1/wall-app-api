@@ -13,6 +13,12 @@ class CustomUserManager(UserManager):
         user.save(using=self._db)
         return user
 
+    def create_superuser(self, username=None, email=None, password=None, **extra_fields):
+        if not username:
+            username = email
+
+        super(CustomUserManager, self).create_superuser(username, email, password, **extra_fields)
+
 
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
