@@ -42,6 +42,7 @@ class Common(Configuration):
     )
 
     ALLOWED_HOSTS = ["*"]
+    CSRF_TRUSTED_ORIGINS = ['https://wall-app-api.hercilio.ortiz.nom.br']
 
     ROOT_URLCONF = 'wall_app_api.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
