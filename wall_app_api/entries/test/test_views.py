@@ -44,6 +44,13 @@ class EntryTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_create_entry_with_content_over_280_chars(self):
+        url = reverse('entry-create')
+        data = {'content': 'a' * 281}
+        self.client.force_authenticate(user=self.user)
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
     #
     # READ TESTS
     #
