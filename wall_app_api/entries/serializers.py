@@ -4,11 +4,11 @@ from ..users.serializers import UserSerializer
 
 
 class EntrySerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Entry
         fields = ['id', 'user', 'content', 'created_at']
+        read_only_fields = ['user']
 
     def to_representation(self, instance):
         data = super(EntrySerializer, self).to_representation(instance)

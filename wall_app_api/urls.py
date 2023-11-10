@@ -4,8 +4,24 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
+from rest_framework.permissions import AllowAny
 from .users.views import UserProfileView, UserCreateView
 from .entries.views import EntryListViewSet, EntryCreateView, EntryDetailViewSet
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your API",
+        default_version="v1",
+        description="Your API description",
+        contact=openapi.Contact(email="herciliomartins@gmail.com"),
+    ),
+    public=True,
+    permission_classes=(AllowAny,),
+)
+
 
 router = DefaultRouter()
 router.register(r'entries', EntryDetailViewSet)
@@ -21,6 +37,9 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
 
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+
+    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter

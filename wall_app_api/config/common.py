@@ -3,6 +3,7 @@ from os.path import join
 from distutils.util import strtobool
 from configurations import Configuration
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -23,10 +24,11 @@ class Common(Configuration):
         'django_filters',            # for filtering rest endpoints
         'oauth2_provider',           # oauth2
         'corsheaders',               # for cross origin requests
+        'drf_yasg',                  # for swagger documentation
 
         # Your apps
         'wall_app_api.users',
-        'wall_app_api.entries',
+        'wall_app_api.entries'
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
@@ -113,6 +115,24 @@ class Common(Configuration):
             },
         },
     ]
+
+    # Swagger settings
+    SWAGGER_SETTINGS = {
+        'USE_SESSION_AUTH': False,
+        'SECURITY_DEFINITIONS': {
+            'Bearer': {
+                'type': 'oauth2',
+                'flow': 'password',
+                'name': 'Authorization',
+                'tokenUrl': '/o/token/',
+                'in': 'header'
+            }
+        },
+        'OAUTH2_CONFIG': {
+            'appName': 'ROPC - Grant password flow',
+            'clientId': os.getenv('OAUTH_DEFAULT_APPLICATION_CLIENT_ID', 'client_id_for_dev_only'),
+        },
+    }
 
     # Set DEBUG to False as a default for safety
     # https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -206,13 +226,13 @@ class Common(Configuration):
     OAUTH2_PROVIDER = {
         'ACCESS_TOKEN_EXPIRE_SECONDS': 3600,
         'AUTHORIZATION_CODE_EXPIRE_SECONDS': 600,
-        'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore'
+        'OAUTH2_BACKEND_CLASS': 'wall_app_api.users.oauth.oauth_backend.JSONOAuthLibCore',
     }
 
     # Django Rest Framework
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 3)),
+        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 10)),
         'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
@@ -223,5 +243,5 @@ class Common(Configuration):
         ],
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        )
+        ),
     }
