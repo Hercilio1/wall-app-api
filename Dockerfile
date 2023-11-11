@@ -15,6 +15,6 @@ EXPOSE 8000
 # Run the production server
 CMD ["bash", "-c", "python wait_for_postgres.py", \
     "&& python manage.py migrate", \
-    "&& python manage.py collectstatic", \
+    "&& python manage.py collectstatic --noinput", \
     "&& python manage.py create_oauth_app", \
     "&& gunicorn --bind 0.0.0.0:8000 --access-logfile - wall_app_api.wsgi:application"]
