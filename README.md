@@ -2,7 +2,7 @@
 
 <!-- [![Build Status](https://travis-ci.org/Hercilio1/wall-app-api.svg?branch=master)](https://travis-ci.org/Hercilio1/wall-app-api) -->
 
-This is the API of the Wall App. Checkout the Frontend (client) project here: https://github.com/Hercilio1/wall-app.
+This is the API of the Wall App. Checkout the Frontend (client) project here: https://github.com/Hercilio1/wall-app
 
 This project is online on: https://wall-app-api.hercilio.ortiz.nom.br/swagger/
 
@@ -55,9 +55,18 @@ To run the project locally, follow these steps:
 
 Swagger has been seamlessly integrated into the API, providing a live documentation platform and a convenient space for testing various API endpoints.
 
-#### Access Swagger UI
+1. **Access Swagger UI:**
+    Open your web browser and navigate to the Swagger UI endpoint. In a typical setup, this is often found at: http://localhost:8000/swagger/
 
-Open your web browser and navigate to the Swagger UI endpoint. In a typical setup, this is often found at: http://localhost:8000/swagger/
+2. **Login using Swagger:**
+    To test authenticated endpoints, follow these steps:
+
+    - Click on "Authorize" next to the listed endpoints.
+    - In the Authorization dialog, fill in the username and password fields.
+    - Select "Request Body" as the Client Credential Location. Choosing "Authorization Header" will result in a login failure.
+    - Leave the `client_secret` field empty.
+
+    By following these steps, you can authenticate and test endpoints using Swagger. Ensure the correct configuration for the client credential location to avoid login issues.
 
 ### Helpful commands
 
