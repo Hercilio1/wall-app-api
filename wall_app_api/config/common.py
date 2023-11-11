@@ -27,6 +27,7 @@ class Common(Configuration):
         'drf_yasg',                  # for swagger documentation
 
         # Your apps
+        'wall_app_api.core',
         'wall_app_api.users',
         'wall_app_api.entries'
     )
