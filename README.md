@@ -4,7 +4,7 @@
 
 This is the API of the Wall App. Checkout the Frontend (client) project here: https://github.com/Hercilio1/wall-app.
 
-This project is online on: wall-app-api.hercilio.ortiz.nom.br/swagger/
+This project is online on: https://wall-app-api.hercilio.ortiz.nom.br/swagger/
 
 
 ## Project Overview
@@ -67,10 +67,20 @@ Use the following command for running commands inside the docker container:
 docker-compose run --rm web [command]
 ```
 
-Example:
+This command utilizes Docker Compose to run the unit tests. The --rm flag ensures that the temporary containers used for testing are removed after execution.
+
+Alternatively, you can run commands directly inside an already running container using:
 
 ```bash
-docker-compose run --rm web python migrate.py makemigrations
+docker-compose exec web [command]
+```
+
+### Testing the Application
+
+Before applying any changes to the application, it's crucial to ensure that the unit tests pass successfully. To run the tests, execute the following command:
+
+```bash
+docker-compose run --rm web python manage.py test
 ```
 
 ### Local Limitations
