@@ -29,6 +29,7 @@ services:
               python manage.py migrate &&
               python manage.py collectstatic --noinput &&
               python manage.py create_oauth_app &&
+              python manage.py seed &&
               gunicorn --bind 0.0.0.0:8000 --access-logfile - wall_app_api.wsgi:application"
 
 volumes:
