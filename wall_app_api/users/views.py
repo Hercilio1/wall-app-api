@@ -1,3 +1,4 @@
+import os
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.views import APIView
@@ -36,14 +37,16 @@ class UserCreateView(generics.CreateAPIView):
         return response
 
     def send_welcome_email(self, user_email):
-        fromEmail = 'herciliomartins@gmail.com'
+        from_email = os.getenv('EMAIL_HOST_USER', "contact@wall-app.app")
         subject = 'Welcome to Wall App!'
+
+        login_page = os.getenv('CLIENT_SITE_LOGIN', "https://localhost:3000/login/")
         template = loader.get_template('email/welcome.html')
 
-        context = {'user_email': user_email}
+        context = {'user_email': user_email, 'login_page': login_page}
         html_content = template.render(context)
 
-        email = EmailMessage(subject, html_content, fromEmail, [user_email])
+        email = EmailMessage(subject, html_content, from_email, [user_email])
         email.content_subtype = 'html'
 
         email.send()
