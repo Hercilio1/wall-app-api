@@ -12,7 +12,7 @@ class Production(Common):
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USES_TLS = True
-    EMAIL_USE_SSL = True
+    EMAIL_USE_SSL = False
     EMAIL_PORT = os.getenv('EMAIL_PORT', "")
     EMAIL_HOST = os.getenv('EMAIL_HOST', "")
     EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', "")
